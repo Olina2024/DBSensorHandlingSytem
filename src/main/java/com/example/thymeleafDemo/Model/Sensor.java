@@ -1,37 +1,61 @@
 package com.example.thymeleafDemo.Model;
 
 
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Data
+@Entity
+@Table(name="sensor")
+@NoArgsConstructor
+@AllArgsConstructor
+
+/*
 public class Sensor {
+    @Id
+    @GeneratedValue
+    protected Long id;
+    protected List<Sensor_type> sensor_types;
+    protected float value;
+    Sensor_type sensor_type;
 
-    //protected int device_id;
-    protected String type;
-    protected float temperature;
-    protected float humidity;
-
-    public Sensor( String type,float temperature,float humidity ){
-
-
-        this.temperature=temperature;
-        this.type=type;
-       this.humidity=humidity;
+    public Sensor( Device device,List<Sensor_type> sensor_types,Sensor_type sensor_type,float value){
 
 
 
-    }/*
+        this.sensor_type=sensor_types.get(0);
+
+        this.value=value;
+
+
+
+    }
     public int getDevice_id() {
         return device_id;
     }
-    */
-    public String getType(){
-        return type;
+  
+    public String device_type(){
+        return device_type;
     }
 
-    public float getHumidity() {
-        return humidity;
-    }
+   public String sensor_type(){
+        return sensor_type;
+   }
+   public Float value(){
 
-    public float getTemperature() {
-        return temperature;
-    }
+       return value;
+
+   }
+   @OneToOne
+   @JoinColumn
+    private Device device;
+    
+ */
 
 }
+        
