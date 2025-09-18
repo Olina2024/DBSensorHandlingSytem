@@ -1,6 +1,10 @@
 package com.example.thymeleafDemo.Controller;
 
+import com.example.thymeleafDemo.Model.Device;
 import com.example.thymeleafDemo.Model.Sensor;
+
+import com.example.thymeleafDemo.Resposity.DeviceRepo;
+//import com.example.thymeleafDemo.Resposity.SensorRepo;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,38 +16,46 @@ import java.util.List;
 @RestController
 public class DBsensorController {
     Sensor sensor=null;
+    Device device=null;
     List<Sensor> sensors=new ArrayList<>();
+    List<Device> devices=new ArrayList<>();
+   //SensorRepo sensorRepo;
+    DeviceRepo deviceRepo;
+    public DBsensorController(DeviceRepo deviceRepo){
+        this.deviceRepo=deviceRepo;
+
+
+    }
+
     @RequestMapping("/Dbsensor")
-    public List<Sensor> databas() {
 
-        return sensors;
+    public List<Device> databas() {
+
+        return deviceRepo.findAll();
 
     }
 
+
+
+   /*
     @RequestMapping("/Dbsensor/Senast")
-    public Sensor senastDb() {
+    public Device senastDb() {
 
-        return sensor;
+        return device;
 
     }
+ */
+
 
     @PostMapping("/Dbsensor/addNewData")
-    public List<Sensor> newData(@RequestBody Sensor sensor){
-       // System.out.println("sensor:"+sensor.getDevice_id());
-/*
-        System.out.println("type:"+sensor.getType());
-        System.out.println("humidity:"+sensor.getHumidity());
-        System.out.println("temperature:"+sensor.getTemperature());
+    public Device newData(@RequestBody Device device){
 
- */
-        sensors.add(sensor);
-        this.sensor=sensor;
-        return sensors;
+        deviceRepo.save(device);
+       // sensorRepo.save(sensor);
+        this.device=device;
+        return device;
 
     }
-
-
-
 
 
 

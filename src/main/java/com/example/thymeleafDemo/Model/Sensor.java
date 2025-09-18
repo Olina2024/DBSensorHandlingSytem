@@ -15,47 +15,24 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 
-/*
+
 public class Sensor {
     @Id
     @GeneratedValue
     protected Long id;
-    protected List<Sensor_type> sensor_types;
     protected float value;
-    Sensor_type sensor_type;
+    protected String sensor_type;
 
-    public Sensor( Device device,List<Sensor_type> sensor_types,Sensor_type sensor_type,float value){
-
-
-
-        this.sensor_type=sensor_types.get(0);
-
-        this.value=value;
-
-
-
+    public Sensor(String sensor_type, float value) {
+        this.sensor_type = sensor_type;
+        this.value = value;
     }
-    public int getDevice_id() {
-        return device_id;
-    }
-  
-    public String device_type(){
-        return device_type;
-    }
-
-   public String sensor_type(){
-        return sensor_type;
-   }
-   public Float value(){
-
-       return value;
-
-   }
-   @OneToOne
-   @JoinColumn
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "device_id")
     private Device device;
-    
- */
+
+
+
+
 
 }
-        
