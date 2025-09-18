@@ -31,8 +31,4 @@ public class Sensor {
     @JoinColumn(name = "device_id")
     private Device device;
 
-
-
-
-
 }
