@@ -20,15 +20,24 @@ public class Sensor {
     @Id
     @GeneratedValue
     protected Long id;
-    protected float value;
     protected String sensor_type;
+    protected float value;
+
+
+    @ManyToOne
+    @JoinColumn
+    private Device device;
+
 
     public Sensor(String sensor_type, float value) {
         this.sensor_type = sensor_type;
         this.value = value;
     }
-    @ManyToOne
-    @JoinColumn
-    private Device device;
 
+
+    public Sensor(String sensor_type, float value, Device device) {
+        this.sensor_type = sensor_type;
+        this.value = value;
+        this.device = device;
+    }
 }

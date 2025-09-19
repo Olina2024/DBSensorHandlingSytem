@@ -31,5 +31,9 @@ public class Device {
         this.device_type=device_type;
     }
 
+    public Device (String device_type){
+        this.device_type=device_type;
+    }
+
 
 }
