@@ -25,20 +25,5 @@ public class Device {
     @JsonManagedReference
     private List<Sensor> sensors;
 
-    public Device(String device_type, List<Sensor> sensors)
-    {
-
-
-
-        this.sensors=sensors;
-        this.device_type=device_type;
-    }
-
-
-
-    public List<Sensor> getSensors() {
-        return sensors;
-    }
-
 
 }
