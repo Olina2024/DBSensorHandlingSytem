@@ -11,7 +11,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="sensor")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -27,8 +27,8 @@ public class Sensor {
         this.sensor_type = sensor_type;
         this.value = value;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "device_id")
+    @ManyToOne
+    @JoinColumn
     private Device device;
 
 }

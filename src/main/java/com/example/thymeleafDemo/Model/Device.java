@@ -9,16 +9,16 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="Device")
+@Table
 @NoArgsConstructor
 @AllArgsConstructor
 public class Device {
     @Id
     @GeneratedValue
-    protected  Long device_id;
+    protected  Long id;
     protected  String device_type;
 
-    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
 
     private List<Sensor> sensors;
 
@@ -26,8 +26,8 @@ public class Device {
     {
         for (Sensor sensor : sensors)
             System.out.println(sensor.getSensor_type()+sensor.getValue());
-        this.sensors=sensors;
 
+        this.sensors=sensors;
         this.device_type=device_type;
     }
 
