@@ -23,8 +23,16 @@ public class SensorController {
 
     // välj mellan senaste och historiska mätningar
     @PostMapping("showDevice")
-    @ResponseBody
     public String pageTwo() {
-        return "Steg två\nHär lägger vi in två alternativ";
+        return "optionpage.html";
     }
+
+    @PostMapping("next")
+    @ResponseBody
+    public String next() {
+        return "nu har du valt om du vill se 'senaste mätning' eller\n " +
+                "'tidsintervall för historiska mätningar', \n " +
+                "sidorna är fortfarande under uppbyggnad, tack för visad förståelse";
+    }
+
 }
