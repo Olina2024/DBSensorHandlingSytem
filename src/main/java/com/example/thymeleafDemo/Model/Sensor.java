@@ -5,8 +5,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -22,6 +25,12 @@ public class Sensor {
     protected Long id;
     protected String sensor_type;
     protected float value;
+
+    @CreationTimestamp
+    protected Date created;
+
+    @UpdateTimestamp
+    protected Date updated;
 
 
     @ManyToOne

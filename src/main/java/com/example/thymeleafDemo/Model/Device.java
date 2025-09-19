@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -17,6 +20,12 @@ public class Device {
     @GeneratedValue
     protected  Long id;
     protected  String device_type;
+
+    @CreationTimestamp
+    protected Date created;
+
+    @UpdateTimestamp
+    protected Date updated;
 
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
 
