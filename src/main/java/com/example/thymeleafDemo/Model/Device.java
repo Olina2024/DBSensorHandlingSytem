@@ -1,11 +1,13 @@
 package com.example.thymeleafDemo.Model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+
 
 @Data
 @Entity
@@ -15,20 +17,27 @@ import java.util.List;
 public class Device {
     @Id
     @GeneratedValue
-    protected  Long device_id;
+    protected  Long id;
     protected  String device_type;
 
-    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL, orphanRemoval = true)
 
+    @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Sensor> sensors;
 
     public Device(String device_type, List<Sensor> sensors)
     {
-        for (Sensor sensor : sensors)
-            System.out.println(sensor.getSensor_type()+sensor.getValue());
-        this.sensors=sensors;
 
+
+
+        this.sensors=sensors;
         this.device_type=device_type;
+    }
+
+
+
+    public List<Sensor> getSensors() {
+        return sensors;
     }
 
 

@@ -29,6 +29,10 @@ public class Sensor {
     }
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "device_id")
+    @JsonBackReference
     private Device device;
 
+
+  @CreationTimestamp
+    private LocalDateTime creationDate;
 }
