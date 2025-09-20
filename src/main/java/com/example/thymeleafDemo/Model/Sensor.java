@@ -15,6 +15,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name="sensor")
+
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -23,19 +24,25 @@ public class Sensor {
     @Id
     @GeneratedValue
     protected Long id;
-    protected float value;
     protected String sensor_type;
+    protected float value;
+
 
     public Sensor(String sensor_type, float value) {
         this.sensor_type = sensor_type;
         this.value = value;
     }
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "device_id")
+    @ManyToOne
+    @JoinColumn(name = "device_id", nullable = false)
     @JsonBackReference
     private Device device;
 
 
+
   @CreationTimestamp
     private LocalDateTime creationDate;
+
+
+
+
 }
