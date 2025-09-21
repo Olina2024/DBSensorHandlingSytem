@@ -14,7 +14,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="sensor")
+@Table(name="sensor_reading")
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,12 +24,12 @@ public class Sensor {
     @Id
     @GeneratedValue
     protected Long id;
-    protected String sensor_type;
+    protected String sensor_reading;
     protected float value;
 
 
-    public Sensor(String sensor_type, float value) {
-        this.sensor_type = sensor_type;
+    public Sensor(String sensor_reading, float value) {
+        this.sensor_reading = sensor_reading;
         this.value = value;
     }
     @ManyToOne
