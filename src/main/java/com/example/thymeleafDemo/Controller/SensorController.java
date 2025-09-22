@@ -32,7 +32,7 @@ public class SensorController {
     public String next() {
         return "nu har du valt om du vill se 'senaste mätning' eller\n " +
                 "'tidsintervall för historiska mätningar', \n " +
-                "sidorna är fortfarande under uppbyggnad, tack för visad förståelse";
+                "sidorna är fortfarande under uppbyggnad, tack för ditt tålamod";
     }
 
 }
