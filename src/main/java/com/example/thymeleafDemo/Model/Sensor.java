@@ -8,12 +8,14 @@ public class Sensor {
     protected float temperature;
     protected float humidity;
 
+    public Sensor() {
+
+    }
+
     public Sensor( String type,float temperature,float humidity ){
-
-
         this.temperature=temperature;
         this.type=type;
-       this.humidity=humidity;
+        this.humidity=humidity;
 
 
 
