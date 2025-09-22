@@ -13,14 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @RestController
 public class DBsensorController {
     Sensor sensor=null;
     Device device=null;
-    List<Sensor> sensors=new ArrayList<>();
     List<Device> devices=new ArrayList<>();
-   //SensorRepo sensorRepo;
     DeviceRepo deviceRepo;
     public DBsensorController(DeviceRepo deviceRepo){
         this.deviceRepo=deviceRepo;
@@ -38,21 +35,21 @@ public class DBsensorController {
 
 
 
-   /*
+
     @RequestMapping("/Dbsensor/Senast")
     public Device senastDb() {
 
         return device;
 
     }
- */
+
 
 
     @PostMapping("/Dbsensor/addNewData")
     public Device newData(@RequestBody Device device){
 
         deviceRepo.save(device);
-       // sensorRepo.save(sensor);
+
         this.device=device;
         return device;
 
