@@ -1,20 +1,21 @@
 package com.example.thymeleafDemo.Model;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Data
 @Entity
-@Table
+@Table(name="sensor_reading")
+
 @NoArgsConstructor
 @AllArgsConstructor
 
@@ -23,30 +24,25 @@ public class Sensor {
     @Id
     @GeneratedValue
     protected Long id;
-    protected String sensor_type;
+    protected String sensor_reading;
     protected float value;
 
-    @CreationTimestamp
-    protected Date created;
 
-    @UpdateTimestamp
-    protected Date updated;
-
-
+    public Sensor(String sensor_reading, float value) {
+        this.sensor_reading = sensor_reading;
+        this.value = value;
+    }
     @ManyToOne
-    @JoinColumn
+    @JoinColumn(name = "device_id", nullable = false)
+    @JsonBackReference
     private Device device;
 
 
-    public Sensor(String sensor_type, float value) {
-        this.sensor_type = sensor_type;
-        this.value = value;
-    }
+
+  @CreationTimestamp
+    private LocalDateTime creationDate;
 
 
-    public Sensor(String sensor_type, float value, Device device) {
-        this.sensor_type = sensor_type;
-        this.value = value;
-        this.device = device;
-    }
+
+
 }
