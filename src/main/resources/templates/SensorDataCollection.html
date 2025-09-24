@@ -50,41 +50,41 @@
 </head>
 
 <body>
-    <h1>Iot Sensor Dashboard</h1>
+<h1>Iot Sensor Dashboard</h1>
 
-    <!-- Senaste Data -->
-    <div class="card">
-        <h3>Senaste Mätning</h3>
-        <div th:if="${latestTemp != null or latestHumidity != null}">
-            <p>Temperatur: <span class="sensor-value" th:text="${latestTemp != null ? latestTemp.value + '°C' : 'Ingen data'}">--</span></p>
-            <p>Luftfuktighet: <span class="sensor-value" th:text="${latestHumidity != null ? latestHumidity.value + '%' : 'Ingen data'}">--</span></p>
-            <p th:if="${latestDevice != null}">Enhet: <span th:text="${latestDevice.device_type}"></span></p>
-        </div>
-        <div th:unless="${latestTemp != null or latestHumidity != null}">
-            <p class="no-data">Ingen sensordata tillgänglig</p>
-        </div>
+<!-- Senaste Data -->
+<div class="card">
+    <h3>Senaste Mätning</h3>
+    <div th:if="${latestTemp != null or latestHumidity != null}">
+        <p>Temperatur: <span class="sensor-value" th:text="${latestTemp != null ? latestTemp.value + '°C' : 'Ingen data'}">--</span></p>
+        <p>Luftfuktighet: <span class="sensor-value" th:text="${latestHumidity != null ? latestHumidity.value + '%' : 'Ingen data'}">--</span></p>
+        <p th:if="${latestDevice != null}">Enhet: <span th:text="${latestDevice.device_type}"></span></p>
     </div>
+    <div th:unless="${latestTemp != null or latestHumidity != null}">
+        <p class="no-data">Ingen sensordata tillgänglig</p>
+    </div>
+</div>
 
-    <!-- Alla Mätningar -->
-    <div class="card">
-        <h3>Alla Mätningar (Totalt: <span th:text="${totalReadings}">0</span>)</h3>
-        <div th:if="${allSensors != null and !allSensors.empty}">
-            <table>
-                <tr>
-                    <th>Typ</th>
-                    <th>Värde</th>
-                    <th>Datum</th>
-                </tr>
-                <tr th:each="sensor : ${allSensors}">
-                    <td th:text="${sensor.sensor_reading}">temperature</td>
-                    <td th:text="${sensor.value}">25.5</td>
-                    <td th:text="${#temporals.format(sensor.creationDate, 'yyyy-MM-dd HH:mm')}" th:if="${sensor.creationDate}">--</td>
-                </tr>
-            </table>
-        </div>
-        <div th:unless="${allSensors != null and !allSensors.empty}">
-            <p class="no-data">Ingen data att visa</p>
-        </div>
+<!-- Alla Mätningar -->
+<div class="card">
+    <h3>Alla Mätningar (Totalt: <span th:text="${totalReadings}">0</span>)</h3>
+    <div th:if="${allSensors != null and !allSensors.isEmpty()}">
+        <table>
+            <tr>
+                <th>Typ</th>
+                <th>Värde</th>
+                <th>Datum</th>
+            </tr>
+            <tr th:each="sensor : ${allSensors}">
+                <td th:text="${sensor.sensor_reading}">temperature</td>
+                <td th:text="${sensor.value}">25.5</td>
+                <td th:text="${#temporals.format(sensor.creationDate, 'yyyy-MM-dd HH:mm')}" th:if="${sensor.creationDate}">--</td>
+            </tr>
+        </table>
     </div>
+    <div th:unless="${allSensors != null and !allSensors.isEmpty()}">
+        <p class="no-data">Ingen data att visa</p>
+    </div>
+</div>
 </body>
 </html>
