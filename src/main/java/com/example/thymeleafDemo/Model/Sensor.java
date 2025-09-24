@@ -38,7 +38,6 @@ public class Sensor {
     private Device device;
 
 
-
   @CreationTimestamp
     private LocalDateTime creationDate;
 

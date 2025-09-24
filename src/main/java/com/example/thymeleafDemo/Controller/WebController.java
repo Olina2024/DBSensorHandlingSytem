@@ -52,16 +52,12 @@ public class WebController {
             Sensor latestHumidity = null;
 
             if(latestDevice != null && latestDevice.getSensors() != null) {
-
-                //Lägg till detta för att felsöka
-                System.out.println("Sensors from latestDevice:" + latestDevice.getSensors());
-
                 for (Sensor sensor : latestDevice.getSensors()) {
                     if("temperature".equalsIgnoreCase(sensor.getSensor_reading())) {
                         latestTemp = sensor;
                     } else if("humidity".equalsIgnoreCase(sensor.getSensor_reading())) {
                         latestHumidity = sensor;
-                        System.out.println(sensor.getSensor_reading());
+
                     }
                 }
             }
@@ -70,7 +66,7 @@ public class WebController {
             model.addAttribute("latestHumidity", latestHumidity);
 
 
-        } catch (Exception e) {
+          } catch (Exception e) {
             System.out.println("No sensor data available: " + e.getMessage());
             model.addAttribute("latestDevice", null);
             model.addAttribute("allDevices", null);
