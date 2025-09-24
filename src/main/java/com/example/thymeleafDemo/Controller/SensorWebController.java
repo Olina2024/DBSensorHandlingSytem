@@ -1,9 +1,8 @@
 package com.example.thymeleafDemo.Controller;
 
 import com.example.thymeleafDemo.Model.Sensor;
-import com.example.thymeleafDemo.Resposity.SensorRepo;
+import com.example.thymeleafDemo.Resposity.DeviceRepo;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Sort;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/web/sensor")
 public class SensorWebController {
 
-    private final SensorRepo repo;
+    private final DeviceRepo repo;
 
     @GetMapping("/history")
     public String history(
@@ -28,20 +27,27 @@ public class SensorWebController {
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
             Model model) {
 
-        List<Sensor> data;
+        // plocka ut alla sensorer från alla devices
+        List<Sensor> allSensors = repo.findAll().stream()
+                .flatMap(device -> device.getSensors().stream())
+                .collect(Collectors.toList());
 
-        if (date == null) {
-            // inget datum skickat → hämta alla, sorterade senaste först
-            data = repo.findAll(Sort.by(Sort.Direction.DESC, "creationDate"));
-        } else {
-            // ett specifikt datum skickat → hämta bara det dygnet
-            LocalDateTime start = date.atStartOfDay();
-            LocalDateTime end = date.plusDays(1).atStartOfDay().minusNanos(1);
-            data = repo.findAllByCreationDateBetween(start, end);
+        List<Sensor> filtered;
+
+        if (date != null) {
+            filtered = allSensors.stream()
+                    .filter(s -> s.getCreationDate() != null
+                            && s.getCreationDate().toLocalDate().equals(date))
+                    .toList();
             model.addAttribute("chosenDate", date);
+        } else {
+            filtered = allSensors;
         }
 
-        model.addAttribute("sensors", data);
-        return "history"; // matchar din history.html
+        int totalCount = filtered.size();
+
+        model.addAttribute("totalReadings", totalCount);
+        model.addAttribute("sensors", filtered);
+        return "history";
     }
 }
