@@ -51,8 +51,8 @@ public class WebController {
             Sensor latestTemp = null;
             Sensor latestHumidity = null;
 
-            if(!allSensors.isEmpty()) {
-                for (Sensor sensor : allSensors) {
+            if(latestDevice != null && latestDevice.getSensors() != null) {
+                for (Sensor sensor : latestDevice.getSensors()) {
                     if("temperature".equals(sensor.getSensor_reading())) {
                         latestTemp = sensor;
                     } else if("humidity".equals(sensor.getSensor_reading())) {
