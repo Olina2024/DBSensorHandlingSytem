@@ -57,7 +57,7 @@ public class WebController {
                 System.out.println("Sensors from latestDevice:" + latestDevice.getSensors());
 
                 for (Sensor sensor : latestDevice.getSensors()) {
-                    if("temperature".equals(sensor.getSensor_reading())) {
+                    if("temperature".equalsIgnoreCase(sensor.getSensor_reading())) {
                         latestTemp = sensor;
                     } else if("humidity".equalsIgnoreCase(sensor.getSensor_reading())) {
                         latestHumidity = sensor;
