@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="sv" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sensorhistorik</title>
+    <style>
+        body { font-family: system-ui; margin: 2rem; }
+        form { margin-bottom: 1rem; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 0.5rem; text-align: left; }
+        th { background: #f5f5f5; }
+    </style>
+</head>
+<body>
+<h1>Sensorhistorik</h1>
+
+<form th:action="@{/web/sensor/history}" method="get">
+    <label for="date">Välj datum:</label>
+    <input type="date" id="date" name="date"
+           th:value="${chosenDate != null ? chosenDate : ''}">
+    <button type="submit">Sök</button>
+    <a th:href="@{/web/sensor/history}">Visa alla</a>
+</form>
+
+<p th:if="${chosenDate != null}">
+    Visar mätningar för <strong th:text="${chosenDate}"></strong>
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Tid</th>
+        <th>Humidity</th>
+        <th>Temperature</th>
+        <th>Type</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="s : ${sensors}">
+        <td th:text="${s.id}"></td>
+        <td th:text="${#temporals.format(s.creationDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+        <td th:text="${s.humidity}"></td>
+        <td th:text="${s.temperature}"></td>
+        <td th:text="${s.type}"></td>
+    </tr>
+    <tr th:if="${#lists.isEmpty(sensors)}">
+        <td colspan="5">Inga mätningar hittades för valt datum.</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
