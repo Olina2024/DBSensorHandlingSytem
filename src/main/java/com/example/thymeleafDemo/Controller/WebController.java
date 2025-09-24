@@ -52,10 +52,6 @@ public class WebController {
             Sensor latestHumidity = null;
 
             if(latestDevice != null && latestDevice.getSensors() != null) {
-
-                //Lägg till detta för att felsöka
-                System.out.println("Sensors from latestDevice:" + latestDevice.getSensors());
-
                 for (Sensor sensor : latestDevice.getSensors()) {
                     if("temperature".equalsIgnoreCase(sensor.getSensor_reading())) {
                         latestTemp = sensor;
