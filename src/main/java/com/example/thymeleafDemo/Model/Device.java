@@ -23,13 +23,6 @@ public class Device {
     @Column(nullable = false)
     protected  String device_type;
 
-
-    @CreationTimestamp
-    protected Date created;
-
-    @UpdateTimestamp
-    protected Date updated;
-
     @OneToMany(mappedBy = "device", cascade = CascadeType.ALL)
     @JsonManagedReference
     private List<Sensor> sensors;
