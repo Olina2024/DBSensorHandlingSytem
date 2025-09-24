@@ -34,8 +34,6 @@ public class DBsensorController {
     }
 
 
-
-
     @RequestMapping("/Dbsensor/Senast")
     public Device senastDb() {
 
