@@ -57,8 +57,10 @@ public class WebController {
                 for (Sensor sensor : latestDevice.getSensors()) {
                     if ("temperature".equalsIgnoreCase(sensor.getSensor_reading()) || ("temp".equalsIgnoreCase(sensor.getSensor_reading())) ){
                         latestTemp = sensor;
-                    } else if ("light".equalsIgnoreCase(sensor.getSensor_reading()) || ("humidity".equalsIgnoreCase(sensor.getSensor_reading()))){
+                    } else if ("light".equalsIgnoreCase(sensor.getSensor_reading())) {
                         latestLight = sensor;
+                    } else if("humidity".equalsIgnoreCase(sensor.getSensor_reading())){
+                        latestHumidity = sensor;
                     }
                 }
             }
