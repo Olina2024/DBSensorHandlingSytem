@@ -65,6 +65,7 @@ public class WebController {
 
             model.addAttribute("latestTemp", latestTemp);
             model.addAttribute("latestLight", latestLight);
+            model.addAttribute("latestHumidity", latestHumidity);
 
 
           } catch (Exception e) {
