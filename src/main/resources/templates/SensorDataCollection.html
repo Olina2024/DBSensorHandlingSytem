@@ -55,12 +55,12 @@
 <!-- Senaste Data -->
 <div class="card">
     <h3>Senaste Mätning</h3>
-    <div th:if="${latestTemp != null or latestHumidity != null}">
+    <div th:if="${latestTemp != null or latestLight != null}">
         <p>Temperatur: <span class="sensor-value" th:text="${latestTemp != null ? latestTemp.value + '°C' : 'Ingen data'}">--</span></p>
-        <p>Luftfuktighet: <span class="sensor-value" th:text="${latestHumidity != null ? latestHumidity.value + '%' : 'Ingen data'}">--</span></p>
+        <p>Ljus: <span class="sensor-value" th:text="${latestLight != null ? latestLight.value + '%' : 'Ingen data'}">--</span> </p>
         <p th:if="${latestDevice != null}">Enhet: <span th:text="${latestDevice.device_type}"></span></p>
     </div>
-    <div th:unless="${latestTemp != null or latestHumidity != null}">
+    <div th:unless="${latestTemp != null or latestLight != null}">
         <p class="no-data">Ingen sensordata tillgänglig</p>
     </div>
 </div>

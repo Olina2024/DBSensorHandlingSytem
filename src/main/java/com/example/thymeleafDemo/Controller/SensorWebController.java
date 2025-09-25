@@ -16,12 +16,12 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/web/sensor")
+@RequestMapping("/Dbsensor")
 public class SensorWebController {
 
     private final DeviceRepo repo;
 
-    @GetMapping("/history")
+    @GetMapping("Dbsensor/history")
     public String history(
             @RequestParam(value = "date", required = false)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,

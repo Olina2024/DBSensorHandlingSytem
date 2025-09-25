@@ -16,13 +16,13 @@ public class SensorController {
 
     private SensorController(SensorRepo sensorRepo) {this.sensorRepo = sensorRepo;}
 
-    @RequestMapping("StartHere")
+    @RequestMapping("/Dbsensor/StartHere")
     public String StartHere() {
         return "start.html";
     }
 
     // välj mellan senaste och historiska mätningar
-    @PostMapping("showDevice")
+    @PostMapping("/Dbsensor/showDevice")
     public String pageTwo() {
         return "optionpage.html";
     }

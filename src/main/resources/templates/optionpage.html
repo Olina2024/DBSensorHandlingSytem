@@ -5,12 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-<form action="next" method="post">
-    <H2> ESP 32 </H2><br>
-    <label> Visa senaste mätning </label>
+<H2> ESP 32 </H2><br>
+<form action="Dbsensor/history" method="get">
+    <label> Se senaste mätning </label><br><br>
     <input type="submit" value="submit"><br><br>
-    <label> Visa tidigare mätningar </label>
-    <input type="submit" value="submit">
+</form>
+
+<form action="/Dbsensor/latest" method="get">
+    <label> Se tidigare mätningar </label><br><br>
+    <input type="submit" value="submit"><br><br>
 </form>
 
 </body>
