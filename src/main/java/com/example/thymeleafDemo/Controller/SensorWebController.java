@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/Dbsensor")
 public class SensorWebController {
 
     private final DeviceRepo repo;

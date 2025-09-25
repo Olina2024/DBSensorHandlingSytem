@@ -23,11 +23,11 @@
 
 <div class="card">
     <h3>Sök historiska mätningar</h3>
-    <form th:action="@{/web/sensor/history}" method="get">
+    <form th:action="@{/Dbsensor/history}" method="get">
         <label for="date">Välj datum:</label>
         <input type="date" id="date" name="date" th:value="${chosenDate != null ? chosenDate : ''}">
         <button type="submit">Sök</button>
-        <a th:href="@{/web/sensor/history}">Visa alla</a>
+        <a th:href="@{/Dbsensor/history}">Visa alla</a>
     </form>
 
     <p th:if="${chosenDate != null}">
