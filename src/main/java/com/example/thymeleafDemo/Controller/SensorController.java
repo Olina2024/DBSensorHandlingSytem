@@ -1,12 +1,15 @@
 package com.example.thymeleafDemo.Controller;
 
 
+import com.example.thymeleafDemo.Model.Device;
 import com.example.thymeleafDemo.Resposity.SensorRepo;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 @Controller
 
@@ -27,12 +30,21 @@ public class SensorController {
         return "optionpage.html";
     }
 
+    // senaste mätningen
     @PostMapping("next")
     @ResponseBody
-    public String next() {
-        return "nu har du valt om du vill se 'senaste mätning' eller\n " +
-                "'tidsintervall för historiska mätningar', \n " +
-                "sidorna är fortfarande under uppbyggnad, tack för ditt tålamod";
+    public String next(Model model) {
+        RestTemplate restTemplate = new RestTemplate();
+        Device latestDevice = restTemplate.getForObject("http://localhost:8080/Dbsensor/Senast", Device.class);
+        model.addAttribute("latestDevice", latestDevice);
+        return "latestReading";
     }
+
+    @PostMapping("oldreadings")
+    @ResponseBody
+    public String oldstuff() {
+        return "gamla mätningar";
+    }
+
 
 }

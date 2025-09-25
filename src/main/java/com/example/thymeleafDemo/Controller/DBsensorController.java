@@ -19,6 +19,8 @@ public class DBsensorController {
     Device device=null;
     List<Device> devices=new ArrayList<>();
     DeviceRepo deviceRepo;
+
+
     public DBsensorController(DeviceRepo deviceRepo){
         this.deviceRepo=deviceRepo;
 
